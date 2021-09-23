@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private Transform playerTransform;
     [SerializeField] private float speed = 12f;
     [SerializeField] private float airSpeed = 0.6f;
+    [SerializeField] private float sneakSpeed = 0.4f;
     [SerializeField] private float sprintSpeed = 1.8f;
     [SerializeField] private float sprintAirSpeed = 1.4f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 3f;
+    
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
@@ -21,12 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool isGrounded;
     private bool isSprinting = false;
-
-    void Start()
-    {
-        
-    }
-
+    private bool isSneaking = false;
 
     void Update()
     {
@@ -64,8 +61,13 @@ public class PlayerMovement : MonoBehaviour
                 //SNEAK
                 if (Input.GetButton("Sneak"))
                 {
-                    print("Sneak");
+                    move *= sneakSpeed;
+                    isSneaking = true;
                     //Kommt mit character model und animations
+                }
+                else
+                {
+                    isSneaking = false;
                 }
                 isSprinting = false;
             }
