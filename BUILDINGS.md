@@ -14,7 +14,7 @@
     <td>Rathaus lagert minimal Ware.</td>
   </tr>
  <tr>
-    <td>Lagerhaus</td>
+    <td>Warehouse</td>
     <td>/</td>
    <td>Storage</td>
     <td>Lagert mehr Ware, wenn das Rathaus nicht reicht.</td>
