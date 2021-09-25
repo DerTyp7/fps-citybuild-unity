@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LightSwitch : Interactable
 {
+    public GameObject GameManager;
     public Light m_Light;
     public bool isOn;
 
@@ -29,7 +30,16 @@ public class LightSwitch : Interactable
     public override void Interact()
     {
         isOn = !isOn;
-        Debug.Log("Click Light");
+
+        if (isOn) {
+            GameManager.GetComponent<EventLog>().CreateEvent("Licht2");
+        }
+        else
+        {
+            GameManager.GetComponent<EventLog>().CreateEvent("Licht1");
+        }
+        
+        //Debug.Log("Click Light");
         UpdateLight();
     }
 }

@@ -7,11 +7,11 @@ public class EventLog : MonoBehaviour
     [Header("Event Log")]
     [SerializeField] private GameObject eventObject;
     [SerializeField] private Transform parentEventObject;
-    Vector3 position = new Vector3 (796f, 134f, 0f);
+    Vector3 position = new Vector3 (Screen.width - 150, 134f, 0f);
     [SerializeField] GameObject[] events;
     void Start()
     {
-        
+        events = GameObject.FindGameObjectsWithTag("Event");
 
     }
 
@@ -19,7 +19,7 @@ public class EventLog : MonoBehaviour
     void Update()
     {
         events = GameObject.FindGameObjectsWithTag("Event");
-
+        //Debug.Log(events.Length);
         if(events.Length < 4)
         {
             switch (events.Length)
@@ -45,22 +45,22 @@ public class EventLog : MonoBehaviour
                 switch (events.Length)
                 {
                     case 1:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 150, 134f, 0f);
                         break;
                     case 2:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 150, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 150, 174f, 0f);
                         break;
                     case 3:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
-                        events[2].transform.position = new Vector3(796f, 214f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 150, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 150, 174f, 0f);
+                        events[2].transform.position = new Vector3(Screen.width - 150, 214f, 0f);
                         break;
                     case 4:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
-                        events[2].transform.position = new Vector3(796f, 214f, 0f);
-                        events[3].transform.position = new Vector3(796f, 254f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 150, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 150, 174f, 0f);
+                        events[2].transform.position = new Vector3(Screen.width - 150, 214f, 0f);
+                        events[3].transform.position = new Vector3(Screen.width - 150, 254f, 0f);
                         break;
                 }
             }
@@ -72,8 +72,12 @@ public class EventLog : MonoBehaviour
 
     public void CreateEvent(string msg)
     {
-        Instantiate(eventObject, position, Quaternion.identity, parentEventObject);
-        eventObject.GetComponent<EventScript>().ChangeText(msg);
+        if(events.Length < 4)
+        {
+            Instantiate(eventObject, position, Quaternion.identity, parentEventObject);
+            eventObject.GetComponent<EventScript>().ChangeText(msg);
+        }
+        
     }
 
 }

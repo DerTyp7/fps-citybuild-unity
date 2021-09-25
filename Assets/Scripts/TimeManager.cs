@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviour
     [Header("TimeManager")]
     [SerializeField] private float timePeriod = 0.02f;
 
-    public int secondsOfDay = 0;
+    public int secondsOfDay = 2000;
 
 
     private void Start()
