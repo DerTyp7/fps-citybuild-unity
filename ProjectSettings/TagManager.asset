@@ -7,6 +7,7 @@ TagManager:
   - Undefined
   - Event
   - Building
+  - Terrain
   layers:
   - Default
   - TransparentFX

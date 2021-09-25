@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingSign : Interactable
+public class InfoSign : Interactable
 {
     private Building parentBuilding;
 
@@ -18,7 +20,8 @@ public class BuildingSign : Interactable
     public override void Interact()
     {
         Debug.Log(parentBuilding.GetTitle());
-        
+
         Debug.Log("interact");
     }
 }
+
