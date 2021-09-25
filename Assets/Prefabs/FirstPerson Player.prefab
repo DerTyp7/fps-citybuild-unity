@@ -286,5 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivityX: 800
+<<<<<<< Updated upstream
   mouseSensitivityY: 700
+=======
+  mouseSensitivityY: 800
+>>>>>>> Stashed changes
   playerBody: {fileID: 1918321789073437693}

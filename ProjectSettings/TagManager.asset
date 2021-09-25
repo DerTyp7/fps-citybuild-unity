@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Undefined
   - Event
+  - Building
   layers:
   - Default
   - TransparentFX
