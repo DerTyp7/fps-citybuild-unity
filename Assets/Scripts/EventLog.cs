@@ -7,7 +7,7 @@ public class EventLog : MonoBehaviour
     [Header("Event Log")]
     [SerializeField] private GameObject eventObject;
     [SerializeField] private Transform parentEventObject;
-    Vector3 position = new Vector3 (796f, 134f, 0f);
+    Vector3 position = new Vector3 (Screen.width-200, 134f, 0f);
     [SerializeField] GameObject[] events;
     void Start()
     {
@@ -19,8 +19,7 @@ public class EventLog : MonoBehaviour
     void Update()
     {
         events = GameObject.FindGameObjectsWithTag("Event");
-
-        if(events.Length < 4)
+        if(events.Length <= 4)
         {
             switch (events.Length)
             {
@@ -45,22 +44,22 @@ public class EventLog : MonoBehaviour
                 switch (events.Length)
                 {
                     case 1:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 200, 134f, 0f);
                         break;
                     case 2:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 200, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 200, 174f, 0f);
                         break;
                     case 3:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
-                        events[2].transform.position = new Vector3(796f, 214f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 200, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 200, 174f, 0f);
+                        events[2].transform.position = new Vector3(Screen.width - 200, 214f, 0f);
                         break;
                     case 4:
-                        events[0].transform.position = new Vector3(796f, 134f, 0f);
-                        events[1].transform.position = new Vector3(796f, 174f, 0f);
-                        events[2].transform.position = new Vector3(796f, 214f, 0f);
-                        events[3].transform.position = new Vector3(796f, 254f, 0f);
+                        events[0].transform.position = new Vector3(Screen.width - 200, 134f, 0f);
+                        events[1].transform.position = new Vector3(Screen.width - 200, 174f, 0f);
+                        events[2].transform.position = new Vector3(Screen.width - 200, 214f, 0f);
+                        events[3].transform.position = new Vector3(Screen.width - 200, 254f, 0f);
                         break;
                 }
             }
