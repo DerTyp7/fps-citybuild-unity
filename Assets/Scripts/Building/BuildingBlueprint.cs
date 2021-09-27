@@ -19,6 +19,12 @@ public abstract class BuildingBlueprint : MonoBehaviour
 
     private void Start()
     {
+        GameObject[] blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
+        foreach (GameObject blueprint in blueprints)
+        GameObject.Destroy(blueprint);
+
+        gameObject.tag = "Blueprint";
+
         terrain = GameObject.FindGameObjectWithTag("Terrain");
         Init();
     }
