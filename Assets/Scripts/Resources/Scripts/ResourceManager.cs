@@ -6,6 +6,9 @@ public class ResourceManager: MonoBehaviour
 {
     [SerializeField] private List<Item> itemList;
 
+
+    // Count All Resources of all storage buildings
+    /*
     public void Remove(Item item)
     {
         itemList.Remove(item);
@@ -14,7 +17,7 @@ public class ResourceManager: MonoBehaviour
     public void Add(Item item)
     {
         itemList.Add(item);
-    }
+    }*/
 
     public int Count(Item item)
     {
