@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HouseBuildingScript : Building
-{
+{   
+    
     [SerializeField] private string title = "House";
     [SerializeField] private string description = "A place for people to live in.";
 
