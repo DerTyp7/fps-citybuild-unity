@@ -16,4 +16,18 @@ public class ResourceManager: MonoBehaviour
         itemList.Add(item);
     }
 
+    public int Count(Item item)
+    {
+        int count = 0;
+
+        foreach(Item i in itemList)
+        {
+            if(i == item)
+            {
+                count += 1;
+            }
+        }
+
+        return count;
+    }
 }
