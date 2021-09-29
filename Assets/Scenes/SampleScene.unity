@@ -1405,16 +1405,36 @@ PrefabInstance:
       value: -9.86
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: airSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: jumpForce
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: jumpHeight
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: sneakSpeed
-      value: 0.9
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: sprintSpeed
-      value: 1.1
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: fallMultiplier
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: sprintJumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: jumpSprintSpeedModifier
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133021, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: m_Name
