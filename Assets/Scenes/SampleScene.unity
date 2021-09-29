@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2277222, g: 0.2251251, b: 0.2237271, a: 1}
+  m_IndirectSpecularColor: {r: 0.5996083, g: 0.5927744, b: 0.588867, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1410,7 +1410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: sneakSpeed
-      value: 0.8
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: sprintSpeed
@@ -1464,6 +1464,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8390537188327133023, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a86db7765f277243b912c20f451dc47, type: 3}

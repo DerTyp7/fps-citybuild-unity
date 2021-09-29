@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Speed Modifier")]
     [SerializeField] private float speed = 12f;
     [SerializeField] private float adjustedSpeed;
-    [SerializeField] private float sneakSpeed = 0.4f;
-    [SerializeField] private float sprintSpeed = 1.8f;
-    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float sneakSpeed = 0.9f;
+    [SerializeField] private float sprintSpeed = 1.1f;
+    [SerializeField] private float jumpHeight = 3.5f;
 
     [Header("Ground Check")]
     [SerializeField] private Transform groundCheck;
