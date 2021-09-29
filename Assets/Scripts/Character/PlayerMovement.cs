@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
     private float modifiedSpeed;
+    private bool isJumpSprinting = false;
     float x;
     float z;
 
@@ -51,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
     {
         //Check every frame if the player stands on the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded)
+        {
+            isJumpSprinting = false;
+        }
+
     }
     private void MovementSpeed()
     {
@@ -76,15 +83,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isSneaking = false;
             }
-        }
-
-        //Sprint jump
-        if (isSprinting && Input.GetButtonDown("Jump"))
-        {
-            Debug.Log("Jump Sprint");
-            rb.AddRelativeForce(Vector3.forward * jumpSprintSpeedModifier);
-        }
-
+        }    
 
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
