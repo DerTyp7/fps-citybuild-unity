@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Resources/Item")]
-public class Item : ScriptableObject
+[System.Serializable]
+public class Item
 {
-    new public string name = "New Item";
+    public string name = "New Item";
     public string uuid = "new_item";
     public Sprite icon = null;
-    public bool isDefaultItem = false;
+    public int count = 1;
 
-    
+    public Item(int c = 1)
+    {
+        count = c;
+    }
 }

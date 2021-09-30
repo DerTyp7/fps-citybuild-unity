@@ -4,33 +4,69 @@ using UnityEngine;
 
 public class ResourceManager: MonoBehaviour
 {
-    [SerializeField] private List<Item> itemList;
+    [SerializeField] private GameObject[] storageBuildings;
 
-
-    // Count All Resources of all storage buildings
-    /*
-    public void Remove(Item item)
+    private void Start()
     {
-        itemList.Remove(item);
+        storageBuildings = GameObject.FindGameObjectsWithTag("StorageBuilding");
     }
-    
-    public void Add(Item item)
+
+    /*
+    private void Update()
     {
-        itemList.Add(item);
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Item wood = new WoodItem(10);
+            storageBuildings[0].GetComponent<StorageBuilding>().Add(wood);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Item stone = new StoneItem(12);
+            storageBuildings[0].GetComponent<StorageBuilding>().Add(stone);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GetAllResources();
+        }
     }*/
 
-    public int Count(Item item)
-    {
-        int count = 0;
 
-        foreach(Item i in itemList)
+    public List<Item> GetAllResources()
+    {
+        List<Item> inventory = new List<Item>();
+
+        //Für jedes StorageBuilding
+        foreach(GameObject b in storageBuildings)
         {
-            if(i == item)
+            List<Item> buildingInv = b.GetComponent<StorageBuilding>().Getinventory();
+
+            //Add items to already existing item +=
+            foreach (Item item in buildingInv)
+            { 
+                foreach(Item i in inventory)
+                {
+                    if(i.uuid == item.uuid)
+                    {
+                        i.count += item.count;
+                        buildingInv.Remove(item);
+                    }
+                }
+            }
+
+            //Add den Rest
+            foreach(Item item in buildingInv)
             {
-                count += 1;
+                inventory.Add(item);
             }
         }
 
-        return count;
+        /*
+        Debug.Log(inventory);
+        Debug.Log(inventory[0].count);
+        Debug.Log(inventory[1].count);*/
+
+        return inventory;
     }
 }
