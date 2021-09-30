@@ -4,9 +4,7 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-
-    public abstract string GetTitle();
-    public abstract string GetDescription();
-
+    public string title = "New Building";
+    public string description = "A cool new building";
 
 }

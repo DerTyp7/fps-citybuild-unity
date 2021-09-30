@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class HouseBuildingScript : Building
 {
-    [SerializeField] private string title = "House";
-    [SerializeField] private string description = "A place for people to live in.";
+    private void Start()
+    {
+        title = "House";
+        description = "A place to live in";
+    }
 
-    public override string GetTitle()
-    {
-        return title;
-    }
-    public override string GetDescription()
-    {
-        return description;
-    }
 }
