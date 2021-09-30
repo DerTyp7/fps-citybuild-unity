@@ -342,3 +342,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9b1c03bb478e84b931f1cbb3bbab8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPoint: {x: 0, y: 0, z: 0}
+  endPoint: {x: 200, y: 0, z: 200}
