@@ -117,7 +117,6 @@ public abstract class BuildingBlueprint : MonoBehaviour
     public void OnCollisionEnter(Collision c)
     {
         isColliding = true;
-
         Debug.Log("Colliding True");
     }
     public void OnCollisionStay(Collision c)
