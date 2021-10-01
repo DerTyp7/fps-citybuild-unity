@@ -5,13 +5,13 @@ using UnityEngine;
 public class ResourceManager: MonoBehaviour
 {
     [SerializeField] private GameObject[] storageBuildings;
-
+    
     private void Start()
     {
         storageBuildings = GameObject.FindGameObjectsWithTag("StorageBuilding");
     }
 
-    /*
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
@@ -30,7 +30,7 @@ public class ResourceManager: MonoBehaviour
         {
             GetAllResources();
         }
-    }*/
+    }
 
 
     public List<Item> GetAllResources()

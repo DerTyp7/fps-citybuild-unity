@@ -8,6 +8,7 @@ public class HouseBuildingScript : Building
     {
         title = "House";
         description = "A place to live in";
+        buildingType = BuildingType.Housing;
     }
 
 }

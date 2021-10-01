@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class TimeTextScript : MonoBehaviour
 {
-    [SerializeField] private GameObject GamerManager;
+    private GameObject GameManager;
 
     private string timeStr = "";
     private Text timeText;
 
     private void Start()
     {
+        GameManager = GameObject.Find("GameManager");
         timeText = GetComponent<Text>();
     }
     void Update()
     {
-        timeStr = GamerManager.GetComponent<TimeManager>().GetTimeString();
+        timeStr = GameManager.GetComponent<TimeManager>().GetTimeString();
         timeText.text = timeStr;
     }
 }
