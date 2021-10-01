@@ -4,9 +4,15 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
+    public string title = "New Building";
+    public string description = "A cool new building";
 
-    public abstract string GetTitle();
-    public abstract string GetDescription();
+    public enum BuildingType
+    {
+        Housing,
+        Storage,
+        Decoration
+    }
 
-
+    public BuildingType buildingType;
 }

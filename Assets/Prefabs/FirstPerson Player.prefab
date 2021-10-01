@@ -138,7 +138,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8390537188327133022}
-  - component: {fileID: 8390537188327133023}
   - component: {fileID: 8390537188327133020}
   - component: {fileID: 8390537188327132961}
   m_Layer: 0
@@ -165,24 +164,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &8390537188327133023
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390537188327133021}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 3.8
-  m_Radius: 0.6
-  m_SlopeLimit: 45
-  m_StepOffset: 0.7
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8390537188327133020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,14 +176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb8e32fc55ebe9478dee06683e84d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 8390537188327133023}
   speed: 12
-  airSpeed: 0.7
-  sneakSpeed: 0.4
-  sprintSpeed: 1.8
-  sprintAirSpeed: 1.9
-  gravity: -19.62
-  jumpHeight: 4
+  adjustedSpeed: 0
+  sneakSpeed: 0.8
+  sprintSpeed: 1.1
+  jumpHeight: 3.5
   groundCheck: {fileID: 8390537187855206696}
   groundDistance: 0.4
   groundMask:
@@ -273,6 +251,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
