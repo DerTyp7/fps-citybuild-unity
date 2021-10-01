@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class BuildingBlueprint : MonoBehaviour
 {
     public bool isColliding;
-    public bool followMouse = true;
     public GameObject constructionPrefab;
     
     private GameObject terrain;
@@ -20,67 +19,31 @@ public abstract class BuildingBlueprint : MonoBehaviour
 
     private void Start()
     {
-        hud = GameObject.Find("HUD").GetComponent<Canvas>();
+        hud = GameObject.Find("HUD").GetComponent<Canvas>(); //Get HUD Canvas
+        terrain = GameObject.FindGameObjectWithTag("Terrain"); //Get Terrain
 
         //Bug Fix Blueprints already existing
+        //Delete/CleanUp all objs with tag "Blueprint"
         GameObject[] blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
-
         foreach (GameObject blueprint in blueprints)
             Destroy(blueprint);
 
   
-        gameObject.tag = "Blueprint";
+        gameObject.tag = "Blueprint"; //Give Gameobject the tag "Blueprint" (after deleting all objs with this tag)
 
-        terrain = GameObject.FindGameObjectWithTag("Terrain");
-        
-        hud.enabled = false;
+        hud.enabled = false; //Hide HUD
 
-        Init();
+        Init(); //Call init callback function for children
     }
 
-
-    //Collision
-    public void OnCollisionEnter(Collision collision)
-    {
-        isColliding = true;
-        
-        Debug.Log("Colliding True");
-    }
-    public void OnCollisionStay(Collision collision)
-    {
-        isColliding = true;
-        Debug.Log("Colliding True");
-    }
-    public void OnCollisionExit(Collision collision)
-    {
-        isColliding = false;
-        Debug.Log("Colliding False");
-    }
-
-    //Placing
     public void Update()
     {
-        if (followMouse)
-        {
-            //Following Mouse
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitData;
-            if (terrain.GetComponent<Collider>().Raycast(ray, out hitData, Mathf.Infinity))
-            {
-                transform.position = hitData.point;
-            }
-        }
-
-        if (Input.GetMouseButtonDown(0) && !isColliding)
-        {
-            Instantiate(constructionPrefab, transform.position, transform.rotation);
-            Destroy(this.gameObject);
-            hud.enabled = true;
-        }
+        FollowMouse();
+        Rotate();
 
         //Collinding Callbacks
         if (isColliding)
-        {
+        {            
             WhileColliding();
         }
         else
@@ -88,15 +51,32 @@ public abstract class BuildingBlueprint : MonoBehaviour
             WhileNotColliding();
         }
 
+        //PLACE
+        if (Input.GetMouseButtonDown(0) && !isColliding)
+        {
+            Place();
+        }
+    }
 
-        //Rotate
+    void FollowMouse()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitData;
+        if (terrain.GetComponent<Collider>().Raycast(ray, out hitData, Mathf.Infinity))
+        {
+            transform.position = hitData.point;
+        }
+    }
+    void Rotate()
+    {
         if (Input.GetButtonDown("Rotate"))
         {
             Debug.Log("Rotate+");
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 transform.Rotate(0, 5, 0);
-            }else if (Input.GetKey(KeyCode.LeftControl))
+            }
+            else if (Input.GetKey(KeyCode.LeftControl))
             {
                 transform.Rotate(0, 45, 0);
             }
@@ -104,7 +84,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
             {
                 transform.Rotate(0, 22.5f, 0);
             }
-            
+
         }
 
         if (Input.GetButtonDown("CounterRotate"))
@@ -113,7 +93,8 @@ public abstract class BuildingBlueprint : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 transform.Rotate(0, -5, 0);
-            }else if (Input.GetKey(KeyCode.LeftControl))
+            }
+            else if (Input.GetKey(KeyCode.LeftControl))
             {
                 transform.Rotate(0, -45, 0);
             }
@@ -123,8 +104,30 @@ public abstract class BuildingBlueprint : MonoBehaviour
             }
 
         }
-
-
+    }
+    void Place()
+    {
+        Instantiate(constructionPrefab, transform.position, transform.rotation);
+        Destroy(this.gameObject);
+        hud.enabled = true;
     }
 
+
+    //Collision
+    public void OnCollisionEnter(Collision c)
+    {
+        isColliding = true;
+
+        Debug.Log("Colliding True");
+    }
+    public void OnCollisionStay(Collision c)
+    {
+        isColliding = true;
+        Debug.Log("Colliding True");
+    }
+    public void OnCollisionExit(Collision c)
+    {
+        isColliding = false;
+        Debug.Log("Colliding False");
+    }
 }
