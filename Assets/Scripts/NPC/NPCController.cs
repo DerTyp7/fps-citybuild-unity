@@ -18,12 +18,10 @@ public class NPCController : MonoBehaviour
     void Start()
     {
         startPoint = new Vector3(0, 0, 0);
-        endPoint = new Vector3(200, 0, 900);
+        endPoint = new Vector3(100, 0, 40);
         rows = 30;
         Map = new PathMap(new Vector3(0, 0, 0), rows, rows, 900);
         Map.setupMapWithNextLayer();
-
-        List<PathNode> parentPath;
         //Looking through the low res search
         
     }
@@ -40,10 +38,10 @@ public class NPCController : MonoBehaviour
             
 
         }
-        else if(!second && first){
+        else if(!second && first && true){
             second = true;
             Debug.Log(Time.time * 1000);
-            if (path != null && true)
+            if (path != null && false)
             {
                 for (int i = 0; i < path.Count - 1; i++)
                 {

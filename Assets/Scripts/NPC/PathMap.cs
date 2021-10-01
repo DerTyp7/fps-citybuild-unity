@@ -17,7 +17,6 @@ public class PathMap
     private float height = 0;
     public Terrain t;
     private float w, h;
-    private bool divided = false;
 
     private List<PathNode> openList;
     private List<PathNode> closedList;
@@ -388,8 +387,6 @@ public class PathMap
 
             }
         }
-
-        divided = true;
     }
     private float heuristic(PathNode p1, PathNode p2)
     {
