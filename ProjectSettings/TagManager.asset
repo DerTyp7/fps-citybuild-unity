@@ -9,6 +9,7 @@ TagManager:
   - Building
   - Terrain
   - Blueprint
+  - StorageBuilding
   layers:
   - Default
   - TransparentFX

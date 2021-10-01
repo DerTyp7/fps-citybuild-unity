@@ -14,6 +14,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
     Ray ray;
 
     public abstract void Init();
+
     public abstract void WhileColliding();
     public abstract void WhileNotColliding();
 

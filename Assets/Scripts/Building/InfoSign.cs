@@ -19,8 +19,6 @@ public class InfoSign : Interactable
 
     public override void Interact()
     {
-        Debug.Log(parentBuilding.GetTitle());
-
         Debug.Log("interact");
     }
 }
