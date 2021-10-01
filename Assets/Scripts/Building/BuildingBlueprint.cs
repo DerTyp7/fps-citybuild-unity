@@ -9,7 +9,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
     public GameObject constructionPrefab;
     
     private GameObject terrain;
-
+    private Canvas hud;
 
     Ray ray;
 
@@ -20,13 +20,21 @@ public abstract class BuildingBlueprint : MonoBehaviour
 
     private void Start()
     {
-        GameObject[] blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
-        foreach (GameObject blueprint in blueprints)
-        GameObject.Destroy(blueprint);
+        hud = GameObject.Find("HUD").GetComponent<Canvas>();
 
+        //Bug Fix Blueprints already existing
+        GameObject[] blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
+
+        foreach (GameObject blueprint in blueprints)
+            Destroy(blueprint);
+
+  
         gameObject.tag = "Blueprint";
 
         terrain = GameObject.FindGameObjectWithTag("Terrain");
+        
+        hud.enabled = false;
+
         Init();
     }
 
@@ -67,6 +75,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
         {
             Instantiate(constructionPrefab, transform.position, transform.rotation);
             Destroy(this.gameObject);
+            hud.enabled = true;
         }
 
         //Collinding Callbacks
