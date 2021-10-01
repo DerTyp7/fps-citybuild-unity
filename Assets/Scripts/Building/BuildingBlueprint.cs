@@ -69,6 +69,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        //Collinding Callbacks
         if (isColliding)
         {
             WhileColliding();
@@ -77,6 +78,44 @@ public abstract class BuildingBlueprint : MonoBehaviour
         {
             WhileNotColliding();
         }
+
+
+        //Rotate
+        if (Input.GetButtonDown("Rotate"))
+        {
+            Debug.Log("Rotate+");
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.Rotate(0, 5, 0);
+            }else if (Input.GetKey(KeyCode.LeftControl))
+            {
+                transform.Rotate(0, 45, 0);
+            }
+            else
+            {
+                transform.Rotate(0, 22.5f, 0);
+            }
+            
+        }
+
+        if (Input.GetButtonDown("CounterRotate"))
+        {
+            Debug.Log("Rotate-");
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                transform.Rotate(0, -5, 0);
+            }else if (Input.GetKey(KeyCode.LeftControl))
+            {
+                transform.Rotate(0, -45, 0);
+            }
+            else
+            {
+                transform.Rotate(0, -22.5f, 0);
+            }
+
+        }
+
+
     }
 
 }
