@@ -23,6 +23,8 @@ public class PathNode
     {
         neigbors = new List<PathNode>();
         position = Vector3.zero;
+        index = new Vector2Int(0,0);
+        parentIndex = new Vector2Int(0,0);
         scoreG = Mathf.Infinity;
         scoreF = Mathf.Infinity;
         scoreH = Mathf.Infinity;

@@ -11,34 +11,52 @@ public class NPCController : MonoBehaviour
     private int rows;
     [SerializeField] Vector3 startPoint;
     [SerializeField] Vector3 endPoint;
+    bool first = false;
+    bool second = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPoint = new Vector3(0,0,0);
-        endPoint = new Vector3(100,0,100);
-        rows = 45;
-        Map = new PathMap(new Vector3(0, 0, 0), rows, rows, 100);
-        Debug.Log("yeet");
+        startPoint = new Vector3(0, 0, 0);
+        endPoint = new Vector3(200, 0, 900);
+        rows = 30;
+        Map = new PathMap(new Vector3(0, 0, 0), rows, rows, 900);
         Map.setupMapWithNextLayer();
+
+        List<PathNode> parentPath;
         //Looking through the low res search
-        //path = Map.QueryNodes(startPoint,endPoint);
-        if (path != null) {
-            for (int i = 0; i < path.Count - 1; i++) {
-                int x = path[i].index.x;
-                int y = path[i].index.y;
-                Debug.Log(path[i].index);
-                Debug.Log(path[i].Position);
-                GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                sphere.transform.position = Map.map[x, y].Position;
-            }
-        }
         
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Fire1") && !first)
+        {
+            first = true;
+            Debug.Log(Time.time * 1000);
+            path = Map.LowerQueryNodes(startPoint, endPoint);
+            
+
+        }
+        else if(!second && first){
+            second = true;
+            Debug.Log(Time.time * 1000);
+            if (path != null && true)
+            {
+                for (int i = 0; i < path.Count - 1; i++)
+                {
+                    float x = path[i].Position.x;
+                    float y = path[i].Position.y;
+
+                    //Debug.Log(path[i].index);
+                    //Debug.Log(path[i].Position);
+
+                    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    sphere.transform.position = path[i].Position;
+                }
+            }
+        }
     }
 }

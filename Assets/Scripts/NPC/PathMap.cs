@@ -71,8 +71,8 @@ public class PathMap
     {
         Generate();
         AddAllNeighbors();
-        //addNextLayer();
-        
+        addNextLayer();
+
         //Add the references to the neighbors of all nodes
 
 
@@ -98,12 +98,14 @@ public class PathMap
 
     public List<PathNode> QueryNodes(Vector3 Vstart, Vector3 Vend)
     {
+        openList = new List<PathNode>();
+        closedList = new List<PathNode>();
+        path = new List<PathNode>();
         bool finished = false;
 
         PathNode start = FindClosestNode(Vstart);
         start.Gscore = 0;
         PathNode end = FindClosestNode(Vend);
-        Debug.Log(start);
         Debug.Log("Searching a path from " + start.Position + " to " + end.Position);
         openList.Add(start);
 
@@ -112,7 +114,7 @@ public class PathMap
         while (!finished)
         {
             d++;
-            if (d > 1000)
+            if (d > 2025)
             {
                 Debug.Log("Too many trys");
                 return null;
@@ -123,7 +125,15 @@ public class PathMap
 
                 if (openList[i].Fscore < openList[winner].Fscore) winner = i;
             }
-            current = openList[winner];
+            if (openList.Count != 0)
+            {
+                current = openList[winner];
+            }
+            else
+            {
+                Debug.Log("Fuck");
+                return null;
+            }
             openList.RemoveAt(winner);
             closedList.Add(current);
 
@@ -164,7 +174,6 @@ public class PathMap
             }
             else
             {
-                Debug.Log("Path Has Been Found");
                 PathNode temp = end;
                 path.Add(temp);
                 while (temp.Previous != null)
@@ -174,29 +183,60 @@ public class PathMap
                 }
                 path.Add(start);
                 finished = true;
+                Debug.Log("Path Has Been Found with " + path.Count + " nodes.");
                 return path;
             }
         }
         return null;
     }
-
-    public List<PathNode> LowerQueryNodes(Vector3 Vstart, Vector3 Vend, PathNode[] parentPath)
+    private bool isInParent(List<PathNode> path, Vector2Int index)
     {
-        bool finished = false;
+        for (int i = 0; i < path.Count; i++)
+        {
 
-        PathNode start = FindClosestNode(Vstart);
+            if (path[i].index == index) { return true; }
+        }
+        return false;
+    }
+
+    public List<PathNode> LowerQueryNodes(Vector3 Vstart, Vector3 Vend)
+    {
+        List<PathNode> excludeNodes = new List<PathNode>();
+
+
+        List<PathNode> parentPath = QueryNodes(Vstart, Vend);
+        if (parentPath == null)
+        {
+            Debug.Log("The Parent didnt find the end!");
+            return null;
+        }
+
+        //Reseting all the lists.
+        openList = new List<PathNode>();
+        closedList = new List<PathNode>();
+        path = new List<PathNode>();
+
+        //Reseting some variables
+        bool finished = false;
+        PathNode current;
+
+        //Setup for the start node
+        PathNode start = parentPath[parentPath.Count - 1].lowerLevel.FindClosestNode(Vstart);
         start.Gscore = 0;
-        PathNode end = FindClosestNode(Vend);
+        openList.Add(start);
+        //Setup for the end node
+        PathNode end = parentPath[0].lowerLevel.FindClosestNode(Vend);
+
 
         Debug.Log("Searching a path from " + start.Position + " to " + end.Position + " but through the lower level.");
-        openList.Add(start);
 
-        PathNode current;
+
+
         int d = 0;
         while (!finished)
         {
             d++;
-            if (d > 1000)
+            if (d > 40*40*40*40)
             {
                 Debug.Log("Too many trys");
                 return null;
@@ -204,10 +244,17 @@ public class PathMap
             int winner = 0;
             for (int i = 0; i < openList.Count; i++)
             {
-
                 if (openList[i].Fscore < openList[winner].Fscore) winner = i;
             }
-            current = openList[winner];
+            if (openList.Count != 0)
+            {
+                current = openList[winner];
+            }
+            else {
+
+                Debug.Log("openlist is empty!");
+                return null;
+            }
             openList.RemoveAt(winner);
             closedList.Add(current);
 
@@ -215,8 +262,9 @@ public class PathMap
             {
                 foreach (PathNode p in current.neigbors)
                 {
-                    if (!closedList.Contains(p) && !p.Blocked)
+                    if (!closedList.Contains(p) && !p.Blocked && isInParent(parentPath, p.parentIndex))
                     {
+
                         float tempG = current.Gscore + heuristic(p, current);
                         bool newPath = false;
                         if (openList.Contains(p))
@@ -246,7 +294,7 @@ public class PathMap
             }
             else
             {
-                Debug.Log("Path Has Been Found");
+
                 PathNode temp = end;
                 path.Add(temp);
                 while (temp.Previous != null)
@@ -255,109 +303,23 @@ public class PathMap
                     temp = temp.Previous;
                 }
                 path.Add(start);
+                Debug.Log("Path Has Been Found with " + path.Count + " nodes.");
                 finished = true;
                 return path;
             }
+            if (openList.Count == 0)
+            {
+                Debug.Log(d);
+                excludeNodes.Add(current);
+                Debug.Log("Could not find a path!");
+                return null;
+            }
+
         }
         return null;
     }
 
-    /*    public void setupNeighborsLower() {
-            //schleife für alle parent Nodes
-            for (int i = 0; i < rows;i++) {
-                for (int j = 0; j < rows;j++)
-                {
-                    for (int x = 0; x < rows; x++)
-                    {
-                        for (int y = 0; y < cols; y++)
-                        {
-                            //looking left and right and top and bottom
-                            for (int x = -1; x <= 1; x++)
-                            {
-                                for (int y = -1; y <= 1; y++)
-                                {
-                                    if (x != 0 && y != 0)
-                                    {
-                                        if (!indexOutOfBounds(index.x + x, index.y + y, rows, cols))
-                                        {
-                                            map[(int)index.x, (int)index.y].neigbors.Add(map[(int)index.x + x, (int)index.y + y]);
-                                        }
-                                        else
-                                        {
-                                            //Rechts
-                                            if (x == 1 && y == 0)
-                                            {
 
-
-                                            }
-                                            //Links
-                                            if (x == -1 && y == 0)
-                                            {
-
-
-                                            }
-                                            //Oben
-                                            if (x == 0 && y == -1)
-                                            {
-
-
-                                            }
-                                            //Unten
-                                            if (x == 0 && y == 1)
-                                            {
-
-
-                                            }
-
-                                            //Diagonal
-
-                                            //Oben-Rechts
-                                            if (x == 1 && y == -1)
-                                            {
-
-
-                                            }
-                                            //Unten-Rechts
-                                            if (x == 1 && y == 1)
-                                            {
-
-
-                                            }
-                                            //Unten-Links
-                                            if (x == -1 && y == 1)
-                                            {
-
-
-                                            }
-                                            //Oben-Links
-                                            if (x == -1 && y == -1)
-                                            {
-
-
-                                            }
-
-
-                                        }
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    }
-                }
-
-
-
-                }
-
-
-
-            }
-
-
-        }*/
 
 
     public void addNextLayer()
@@ -371,7 +333,7 @@ public class PathMap
             {
 
                 PathNode node = new PathNode();
-                node.Position = new Vector3(this.position.x + i * spacing/rows,this.position.y,this.position.z + j * spacing/cols);
+                node.Position = new Vector3(this.position.x + i * spacing / rows, this.position.y, this.position.z + j * spacing / cols);
                 full[i, j] = node;
 
             }
@@ -389,14 +351,8 @@ public class PathMap
                         {
                             if (!indexOutOfBounds(i + x, j + y, rows * rows, cols * cols))
                             {
-                                //try
-                                //{
-                                    full[i, j].neigbors.Add(full[i + x, j + y]);
-                                //} 
-                                //catch
-                                //{
-                                //    Debug.Log("poggers");
-                                //}
+                                full[i, j].neigbors.Add(full[i + x, j + y]);
+
                             }
                         }
                     }
@@ -405,7 +361,7 @@ public class PathMap
             }
 
         }
-        
+
 
         for (int r = 0; r < rows; r++)
         {
@@ -418,15 +374,15 @@ public class PathMap
                 {
                     for (int j = 0; j < cols; j++)
                     {
-                        PathNode n = full[r*rows+i,c*cols + j];
-                        Debug.Log(n);
-                        node.lowerLevel.map[i,j].index = new Vector2Int(i, j);
-                        node.ConditionWeight = 1 + (float)Random.Range(1, 1000) / 1000;
-                        node.lowerLevel.map[i, j] = node;
+                        PathNode n = full[r * rows + i, c * cols + j];
+                        n.index.Set(i, j);
+                        n.parentIndex.Set(r, c);
+                        n.ConditionWeight = 1 + (float)Random.Range(1, 1000) / 1000;
+                        node.lowerLevel.map[i, j] = n;
 
                     }
                 }
-                node.lowerLevel.parent = this;            
+                node.lowerLevel.parent = this;
 
                 node.HasLowerLevel = true;
 
@@ -445,7 +401,7 @@ public class PathMap
         return dist1 + dist2;
 
     }
-private PathNode FindClosestNode(Vector3 pos)
+    private PathNode FindClosestNode(Vector3 pos)
     {
         if (pos.x > 0 && pos.x < rows * spacing && pos.z > 0 && pos.z < cols * spacing && false)
         {
@@ -462,7 +418,6 @@ private PathNode FindClosestNode(Vector3 pos)
                 {
                     best.Set(r, c);
                 }
-
             }
         }
         return map[best.x, best.y];
@@ -511,10 +466,6 @@ private PathNode FindClosestNode(Vector3 pos)
                 }
             }
         }
-
-      
-
-
     }
 
 }
