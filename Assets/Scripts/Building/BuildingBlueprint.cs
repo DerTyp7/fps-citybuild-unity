@@ -6,7 +6,10 @@ public abstract class BuildingBlueprint : MonoBehaviour
 {
     public bool isColliding;
     public GameObject constructionPrefab;
-    
+
+    public Material collisionMat;
+    public Material blueprintMat;
+
     private GameObject terrain;
     private Canvas hud;
 

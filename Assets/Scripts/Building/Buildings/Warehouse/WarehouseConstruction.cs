@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HouseConstruction : BuildingConstruction
+public class WarehouseConstruction : BuildingConstruction
 {
     [Header("Needed Resources")]
     [SerializeField] private int neededWood = 10;
@@ -22,5 +22,4 @@ public class HouseConstruction : BuildingConstruction
         }
         return false;
     }
-    
 }

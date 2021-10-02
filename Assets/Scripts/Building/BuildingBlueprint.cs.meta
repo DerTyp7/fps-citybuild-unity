@@ -3,7 +3,10 @@ guid: 76f9b3b57e22ab047b8f95bcb552289a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - constructionPrefab: {instanceID: 0}
+  - collisionMat: {fileID: 2100000, guid: a1e8fb1ea637c0e45bed70dd7d1feaab, type: 2}
+  - blueprintMat: {fileID: 2100000, guid: 78d3985cb7b88204b930cd05567c0c61, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

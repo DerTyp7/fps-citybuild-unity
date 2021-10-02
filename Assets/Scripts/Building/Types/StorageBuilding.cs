@@ -7,9 +7,12 @@ public class StorageBuilding : Building
     [SerializeField] private List<Item> inventory = new List<Item>();
     public int inventorySpace;
 
-    public void Start()
+
+
+    public void Awake()
     {
         buildingType = BuildingType.Storage;
+
     }
     public void Add(Item item)
     {
