@@ -128,20 +128,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8390537188327133021, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
   m_PrefabInstance: {fileID: 8390537188401440993}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &95348669
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 95348668}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &95348670
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -157,7 +143,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &95348673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,7 +1248,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4552884677486152052, guid: 613866d46c759a848b2a462973745a74, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 613866d46c759a848b2a462973745a74, type: 3}
 --- !u!4 &1667291200 stripped
 Transform:
@@ -1631,6 +1618,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 95348673, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 1417065444}
+    - target: {fileID: 8390537187855206697, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537187866079435, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8390537187866079437, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: mouseSensitivityX
       value: 600
@@ -1704,6 +1703,10 @@ PrefabInstance:
       value: FirstPerson Player
       objectReference: {fileID: 0}
     - target: {fileID: 8390537188327133021, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537188327133021, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: m_TagString
       value: FPSPlayer
       objectReference: {fileID: 0}
@@ -1750,6 +1753,10 @@ PrefabInstance:
     - target: {fileID: 8390537188327133022, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8390537189371922020, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8390537189371922023, guid: 6a86db7765f277243b912c20f451dc47, type: 3}
       propertyPath: m_LocalPosition.z

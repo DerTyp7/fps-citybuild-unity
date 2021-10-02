@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4866682319586851668}
   - component: {fileID: 3311111595986389378}
   - component: {fileID: 4142088092775269754}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HouseBlueprint
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 5393002048649408726}
   - component: {fileID: 1610568275509015081}
   - component: {fileID: 7623891201045491457}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: HouseCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 5814949246021907090}
   - component: {fileID: 1718464429846659355}
   - component: {fileID: 3106913784298869306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
