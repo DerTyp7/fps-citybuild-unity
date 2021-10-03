@@ -7,6 +7,8 @@ public abstract class Building : MonoBehaviour
     public string title = "New Building";
     public string description = "A cool new building";
 
+    //Refer to a BLUEPRINT from here
+
     public enum BuildingType
     {
         Housing,
