@@ -10,6 +10,7 @@ TagManager:
   - Terrain
   - Blueprint
   - StorageBuilding
+  - FPSPlayer
   layers:
   - Default
   - TransparentFX

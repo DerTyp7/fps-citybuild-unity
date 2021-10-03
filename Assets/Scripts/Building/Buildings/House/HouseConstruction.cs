@@ -14,15 +14,12 @@ public class HouseConstruction : BuildingConstruction
 
     public override void Init()
     {
-        gameManager = GameObject.Find("GameManager");
-        gameManager.GetComponent<EventLog>().CreateEvent("Construction: House");
     }
 
     public override bool CheckForResources()
     {
         if (havingWood == neededWood)
         {
-            gameManager.GetComponent<EventLog>().CreateEvent("Construction: House: finished");
             return true;
         }
         return false;

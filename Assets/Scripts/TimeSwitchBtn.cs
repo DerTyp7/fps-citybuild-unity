@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class TimeSwitchBtn: Interactable
 {
-    public GameObject GameManager;
     public bool dark;
-
+    public GameObject GameManager;
 
     public override string GetDescription()
     {
@@ -30,12 +29,10 @@ public class TimeSwitchBtn: Interactable
 
         if (dark)
         {
-            GameManager.GetComponent<EventLog>().CreateEvent("Tag!");
             GameManager.GetComponent<TimeManager>().secondsOfDay = 0;
         }
         else
         {
-            GameManager.GetComponent<EventLog>().CreateEvent("Nacht!");
             GameManager.GetComponent<TimeManager>().secondsOfDay = 30000;
         }
     }
