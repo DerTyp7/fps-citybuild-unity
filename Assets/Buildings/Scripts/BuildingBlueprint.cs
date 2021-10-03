@@ -34,7 +34,7 @@ public abstract class BuildingBlueprint : MonoBehaviour
   
         gameObject.tag = "Blueprint"; //Give Gameobject the tag "Blueprint" (after deleting all objs with this tag)
 
-        hud.enabled = false; //Hide HUD
+        
 
         Init(); //Call init callback function for children
     }
