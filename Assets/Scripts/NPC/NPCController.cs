@@ -17,10 +17,10 @@ public class NPCController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPoint = new Vector3(0, 0, 0);
-        endPoint = new Vector3(100, 0, 40);
-        rows = 30;
-        Map = new PathMap(new Vector3(0, 0, 0), rows, rows, 900);
+        startPoint = new Vector3(13, 0, 23);
+        endPoint = new Vector3(41, 0, 50);
+        rows = 17;
+        Map = new PathMap(new Vector3(0, 0, 0), rows, rows, 1000);
         Map.setupMapWithNextLayer();
         //Looking through the low res search
         
