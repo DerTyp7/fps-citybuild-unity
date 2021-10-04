@@ -7,7 +7,10 @@ public class StorageBuilding : Building
     [SerializeField] private List<Item> inventory = new List<Item>();
     public int inventorySpace;
 
-
+    public override void OnStartUp()
+    {
+     
+    }
 
     public void Awake()
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HouseBuildingScript : Building
 {
-    private void Start()
+    public override void OnStartUp()
     {
         title = "House";
         description = "A place to live in";

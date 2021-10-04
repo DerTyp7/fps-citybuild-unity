@@ -2,41 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BuildingBlueprint : MonoBehaviour
+public class BuildingBlueprint : MonoBehaviour
 {
-    public bool isColliding;
-    public GameObject constructionPrefab;
-
+    
     public Material collisionMat;
     public Material blueprintMat;
 
+
     private GameObject terrain;
     private Canvas hud;
+    private bool isColliding;
 
     Ray ray;
-
-    public abstract void Init();
-
-    public abstract void WhileColliding();
-    public abstract void WhileNotColliding();
 
     private void Start()
     {
         hud = GameObject.Find("HUD").GetComponent<Canvas>(); //Get HUD Canvas
         terrain = GameObject.FindGameObjectWithTag("Terrain"); //Get Terrain
 
-        //Bug Fix Blueprints already existing
-        //Delete/CleanUp all objs with tag "Blueprint"
-        GameObject[] blueprints = GameObject.FindGameObjectsWithTag("Blueprint");
-        foreach (GameObject blueprint in blueprints)
-            Destroy(blueprint);
-
-  
-        gameObject.tag = "Blueprint"; //Give Gameobject the tag "Blueprint" (after deleting all objs with this tag)
-
         hud.enabled = false; //Hide HUD
-
-        Init(); //Call init callback function for children
     }
 
     public void Update()
@@ -44,20 +28,37 @@ public abstract class BuildingBlueprint : MonoBehaviour
         FollowMouse();
         Rotate();
 
-        //Collinding Callbacks
+        //COLLISION
         if (isColliding)
-        {            
-            WhileColliding();
+        {
+            MeshRenderer[] mr = gameObject.GetComponent<Building>().FindChildByTag("Blueprint").GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer r in mr)
+            {
+                r.material = collisionMat;
+            }
+            
         }
         else
         {
-            WhileNotColliding();
+            MeshRenderer[] mr = gameObject.GetComponent<Building>().FindChildByTag("Blueprint").GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer r in mr)
+            {
+                r.material = blueprintMat;
+            }
         }
+
 
         //PLACE
         if (Input.GetMouseButtonDown(0) && !isColliding)
         {
-            Place();
+            gameObject.GetComponent<Building>().EndBlueprint(true);
+            hud.enabled = true;
+        }
+
+        if (Input.GetButtonDown("Build"))
+        {
+            gameObject.GetComponent<Building>().EndBlueprint(false);
+            hud.enabled = true;
         }
     }
 
@@ -108,13 +109,6 @@ public abstract class BuildingBlueprint : MonoBehaviour
 
         }
     }
-    void Place()
-    {
-        Instantiate(constructionPrefab, transform.position, transform.rotation);
-        Destroy(this.gameObject);
-        hud.enabled = true;
-    }
-
 
     //Collision
     public void OnCollisionEnter(Collision c)
