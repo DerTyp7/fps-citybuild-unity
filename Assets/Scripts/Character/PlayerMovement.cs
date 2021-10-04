@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float maxWalkebleAngle = 45f;
 
     public bool isSprinting = false;
     public bool isSneaking = false;
@@ -27,10 +28,13 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumpSprinting = false;
     float x;
     float z;
+    float angle;
 
     Vector3 movement;
+    Vector3 moveDirection;
+    Vector3 angleDir;
 
-   
+
 
     private void Start()
     {
@@ -54,6 +58,20 @@ public class PlayerMovement : MonoBehaviour
     {
         //Check every frame if the player stands on the ground
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        RaycastHit hit;
+        
+        if (Physics.Raycast(gameObject.transform.position, Vector3.down, out hit)) {
+            Vector3 t = hit.normal;
+            angle = Vector3.Angle(t,Vector3.up);
+            angleDir = new Vector3(t.x,0,t.z).normalized;
+
+        }
+        Vector3 g = angleDir - Vector3.forward;
+        Debug.Log(g.magnitude);
+        if (angle > maxWalkebleAngle && !(g.magnitude > 1))
+        {
+            isGrounded = false;
+        }
 
         if (isGrounded)
         {
@@ -89,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-
+        moveDirection.Set(x,0,z);
         movement = x * modifiedSpeed * transform.right + new Vector3(0, rb.velocity.y, 0) + z * modifiedSpeed * transform.forward;
     }
 
