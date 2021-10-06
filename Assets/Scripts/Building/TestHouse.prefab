@@ -283,6 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5360703793539700796}
+  - component: {fileID: 1517405387498435762}
   m_Layer: 9
   m_Name: HouseBlueprint
   m_TagString: Blueprint
@@ -306,6 +307,19 @@ Transform:
   m_Father: {fileID: 5360703794841841444}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1517405387498435762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360703793539700797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 92.57468, y: 48.040638, z: 29.317003}
+  m_Center: {x: -4.6876817, y: 0.38128814, z: -0.8356206}
 --- !u!1 &5360703794001325736
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5360703794001325739}
   - component: {fileID: 5360703794001325738}
+  - component: {fileID: 3042064361800759033}
   m_Layer: 0
   m_Name: House
   m_TagString: Building
@@ -355,6 +370,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!65 &3042064361800759033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360703794001325736}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 80, y: 40, z: 30}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5360703794841841442
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +393,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5360703794841841444}
   - component: {fileID: 5360703794841841445}
-  - component: {fileID: 5360703794841841446}
   m_Layer: 0
   m_Name: TestHouse
   m_TagString: Building
@@ -406,19 +433,6 @@ MonoBehaviour:
   blueprintMat: {fileID: 2100000, guid: 78d3985cb7b88204b930cd05567c0c61, type: 2}
   collisionMat: {fileID: 2100000, guid: a1e8fb1ea637c0e45bed70dd7d1feaab, type: 2}
   buildingType: 0
---- !u!65 &5360703794841841446
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360703794841841442}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5360703794877200714
 GameObject:
   m_ObjectHideFlags: 0

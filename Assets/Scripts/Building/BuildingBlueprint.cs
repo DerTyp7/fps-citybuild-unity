@@ -31,6 +31,7 @@ public class BuildingBlueprint : MonoBehaviour
         //COLLISION
         if (isColliding)
         {
+            Debug.Log("Collision");
             MeshRenderer[] mr = gameObject.GetComponent<Building>().FindChildByTag("Blueprint").GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in mr)
             {
@@ -111,17 +112,17 @@ public class BuildingBlueprint : MonoBehaviour
     }
 
     //Collision
-    public void OnCollisionEnter(Collision c)
+    public void OnTriggerEnter(Collider other)
     {
         isColliding = true;
         Debug.Log("Colliding True");
     }
-    public void OnCollisionStay(Collision c)
+    public void OnTriggerStay(Collider other)
     {
         isColliding = true;
         Debug.Log("Colliding True");
     }
-    public void OnCollisionExit(Collision c)
+    public void OnTriggerExit(Collider other)
     {
         isColliding = false;
         Debug.Log("Colliding False");
