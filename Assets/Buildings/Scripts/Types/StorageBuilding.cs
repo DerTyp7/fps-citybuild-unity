@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StorageBuilding : Building
+public abstract class StorageBuilding : Building
 {
     [SerializeField] private List<Item> inventory = new List<Item>();
     public int inventorySpace;
 
+    public abstract void Init();
     public override void OnStartUp()
     {
-     
+        Init();
     }
 
     public void Awake()

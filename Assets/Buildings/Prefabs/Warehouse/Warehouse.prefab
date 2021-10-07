@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4313322080168749922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5882482129167315313}
+  - component: {fileID: -7859128105794699006}
+  m_Layer: 0
+  m_Name: Warehouse
+  m_TagString: StorageBuilding
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5882482129167315313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313322080168749922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5140686, y: 18.59874, z: -16.116364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-7859128105794699006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4313322080168749922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a48bc1459390b4459fbf54ad16b50f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Warehouse
+  description: A cool new building
+  buildingPrefab: {fileID: 6589780473684175094, guid: b21d0588446c3d945b1f678e4a3dcf7d, type: 3}
+  blueprintPrefab: {fileID: 7419709184966709587, guid: 26edc2ca63897544897ba3918ed147cf, type: 3}
+  buildingType: 1
+  inventory: []
+  inventorySpace: 0

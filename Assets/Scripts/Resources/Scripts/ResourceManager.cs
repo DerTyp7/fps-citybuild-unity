@@ -8,12 +8,13 @@ public class ResourceManager: MonoBehaviour
     
     private void Start()
     {
-        storageBuildings = GameObject.FindGameObjectsWithTag("StorageBuilding");
+        
     }
 
     
     private void Update()
     {
+        storageBuildings = GameObject.FindGameObjectsWithTag("StorageBuilding");
         if (Input.GetKeyDown(KeyCode.K))
         {
             Item wood = new WoodItem(10);

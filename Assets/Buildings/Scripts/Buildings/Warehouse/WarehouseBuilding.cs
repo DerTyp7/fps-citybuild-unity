@@ -5,7 +5,7 @@ using UnityEngine;
 public class WarehouseBuilding : StorageBuilding
 {
 
-    private void Start()
+    public override void Init()
     {
         title = "Warehouse";
         description = "A place to store your resources";
