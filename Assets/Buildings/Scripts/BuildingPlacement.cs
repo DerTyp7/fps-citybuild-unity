@@ -5,12 +5,35 @@ using UnityEngine;
 public class BuildingPlacement : MonoBehaviour
 {
     [SerializeField] private GameObject terrain;
-    [SerializeField] private GameObject prefab;
+    
+    public GameObject prefab;
 
+    public TMPro.TextMeshProUGUI buildingText;
+
+    int i = 0;
     Ray ray;
 
+    private void Start()
+    {
+        buildingText = GameObject.Find("SelectionText").GetComponent<TMPro.TextMeshProUGUI>();
+    }
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            List<GameObject> registry = GameObject.Find("GameManager").GetComponent<BuildingsRegistry>().GetRegistry();
+
+            i++;
+            if(i >= registry.Count)
+            {
+                i = 0;
+            }
+
+            prefab = registry[i];
+            buildingText.text = prefab.name;
+        }
+
         // Build Button Handler
         if (Input.GetButtonDown("Build"))
         { // Wenn man den Button 'B'

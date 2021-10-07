@@ -6,5 +6,8 @@ public class BuildingsRegistry : MonoBehaviour
 {
     [SerializeField] private List<GameObject> registered_buildings = new List<GameObject>();
 
-
+    public List<GameObject> GetRegistry()
+    {
+        return registered_buildings;
+    }
 }

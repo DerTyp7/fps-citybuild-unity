@@ -121,7 +121,7 @@ public class BuildingBlueprint : MonoBehaviour
             isColliding = true;
         }
         
-        Debug.Log("Colliding True");
+       // Debug.Log("Colliding True");
     }
     public void OnTriggerStay(Collider other)
     {
@@ -129,7 +129,7 @@ public class BuildingBlueprint : MonoBehaviour
         {
             isColliding = true;
         }
-        Debug.Log("Colliding True");
+       // Debug.Log("Colliding True");
     }
     public void OnTriggerExit(Collider other)
     {
@@ -137,6 +137,6 @@ public class BuildingBlueprint : MonoBehaviour
         {
             isColliding = false;
         }
-        Debug.Log("Colliding False");
+       // Debug.Log("Colliding False");
     }
 }
