@@ -32,7 +32,7 @@ public class BuildingBlueprint : MonoBehaviour
         if (isColliding)
         {
             Debug.Log("Collision");
-            MeshRenderer[] mr = gameObject.GetComponent<Building>().FindChildByTag("Blueprint").GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] mr = gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in mr)
             {
                 r.material = collisionMat;
@@ -41,7 +41,7 @@ public class BuildingBlueprint : MonoBehaviour
         }
         else
         {
-            MeshRenderer[] mr = gameObject.GetComponent<Building>().FindChildByTag("Blueprint").GetComponentsInChildren<MeshRenderer>();
+            MeshRenderer[] mr = gameObject.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer r in mr)
             {
                 r.material = blueprintMat;
@@ -52,14 +52,16 @@ public class BuildingBlueprint : MonoBehaviour
         //PLACE
         if (Input.GetMouseButtonDown(0) && !isColliding)
         {
-            gameObject.GetComponent<Building>().EndBlueprint(true);
+            gameObject.transform.parent.gameObject.GetComponent<Building>().Place(transform);
             hud.enabled = true;
+            Destroy(gameObject);
+
         }
 
         if (Input.GetButtonDown("Build"))
         {
-            gameObject.GetComponent<Building>().EndBlueprint(false);
             hud.enabled = true;
+            Destroy(gameObject);
         }
     }
 
@@ -114,17 +116,27 @@ public class BuildingBlueprint : MonoBehaviour
     //Collision
     public void OnTriggerEnter(Collider other)
     {
-        isColliding = true;
+        if(!(other.transform.tag == "Terrain"))
+        {
+            isColliding = true;
+        }
+        
         Debug.Log("Colliding True");
     }
     public void OnTriggerStay(Collider other)
     {
-        isColliding = true;
+        if (!(other.transform.tag == "Terrain"))
+        {
+            isColliding = true;
+        }
         Debug.Log("Colliding True");
     }
     public void OnTriggerExit(Collider other)
     {
-        isColliding = false;
+        if (!(other.transform.tag == "Terrain"))
+        {
+            isColliding = false;
+        }
         Debug.Log("Colliding False");
     }
 }
