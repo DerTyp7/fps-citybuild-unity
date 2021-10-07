@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timePeriod: 0.0002
-  secondsOfDay: 60000
+  secondsOfDay: 30000
 --- !u!4 &1861247505
 Transform:
   m_ObjectHideFlags: 0
